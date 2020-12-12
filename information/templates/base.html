@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" href="./base.css">
+</head>
+<body>
+
+
+<div class="container">
+  <form method="post">
+  <div class="row">
+    {% csrf_token %}
+    {{ form.as_table }}
+  
+  </div>
+    
+     
+  <div class="row">
+    <input type="submit" value="Submit">
+  </div>
+  </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" href="./base.css">
+</head>
+<body>
+
+
+<div class="container">
+  <form method="post">
+  <div class="row">
+        <form method = 'POST' class="col s12" enctype="multipart/form-data"> 
+    
+            {% csrf_token %} 
+
+    
+        <!--Below is our main file upload input -->
+            <input type = "file" name = 'document'> 
+            <p><button type = "submit" class = "waves-effect waves-light btn" style = "background-color: teal">upload</button></p> 
+         </form> 
+  </div>
+    
+     
+  <div class="row">
+    <input type="submit" value="Submit">
+  </div>
+  </form>
+</div>
+
+</body>
+</html>

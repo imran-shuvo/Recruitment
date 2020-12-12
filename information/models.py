@@ -1,6 +1,8 @@
 from django.db import models
 from django.db import models
 import uuid
+from django.core.validators import MaxValueValidator
+from django.core.validators import MinValueValidator
 
 
 class File(models.Model):
@@ -13,17 +15,17 @@ class RecruitmentInfo(models.Model):
     phone = models.CharField(max_length=14)
     full_address = models.CharField(max_length=512)
     name_of_university = models.CharField(max_length=256)
-    graduation_year = models.IntegerField(max=2020,min=2015)
-    cgpa = models.IntegerField(max=4,min=2)
-    experience_in_months = models.IntegerField(max=100,min=0)
+    graduation_year = models.PositiveIntegerField(validators=[MinValueValidator(2015),MaxValueValidator(2020)])
+    cgpa = models.PositiveIntegerField(validators=[MinValueValidator(2),MaxValueValidator(4)])
+    experience_in_months = models.PositiveIntegerField(validators=[MinValueValidator(0),MaxValueValidator(100)])
     current_work_place_name = models.CharField(max_length=256)
     applying_in = models.CharField(max_length=14)
-    expected_salary = models.IntegerField(max=60000,min=15000)
+    expected_salary = models.PositiveIntegerField(validators=[MinValueValidator(15000),MaxValueValidator(60000)])
     field_buzz_reference = models.CharField(max_length=256)
     github_project_url = models.CharField(max_length=256)
-    cv_file = models.ForeignKey(File,on_delete = None)
+    cv_file = models.ForeignKey(File,on_delete = callable)
     on_spot_update_time = models.DateTimeField(auto_now=True)
-    on_spot_creation_time = models.DateTimeField(auto_add_now=True)
+    on_spot_creation_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
