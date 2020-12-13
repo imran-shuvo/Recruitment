@@ -16,6 +16,7 @@ file_token_id = ''
 def applicant_information(request):
     if request.method =='POST':
         form = FormRecruitmentInfo(request.POST)
+        data = request.POST
         global token
         data['token'] = token
         print(form)
@@ -34,6 +35,7 @@ def applicant_information(request):
 
         # user = authenticate(username=username,password = password)
     else :  
+
         form = FormRecruitmentInfo()
         context = {'form':form}
         return render(request,'base.html',context)
